@@ -52,12 +52,12 @@ export class Buyer {
         this._address = "";
     }
 
-    validate(data: IBuyer): IBuyerValid {
+    validate(): IBuyerValid {
         return {
-            payment: data.payment ? "" : "Выберите способ оплаты",
-            email: data.email ? "" : "Укажите email",
-            phone: data.phone ? "" : "Укажите телефон",
-            address: data.address ? "" : "Укажите адрес доставки",
+            payment: this._payment ? "" : "Выберите способ оплаты",
+            email: this._email ? "" : "Укажите email",
+            phone: this._phone ? "" : "Укажите телефон",
+            address: this._address ? "" : "Укажите адрес доставки",
         };
     }
 }

@@ -18,7 +18,7 @@ export class Catalogue {
     }
 
     set itemActive(id: string) {
-        this._itemActive = this._items.filter((item) => item.id === id)[0];
+        this._itemActive = this._items.filter(item => item.id === id)[0];
     }
 
     get itemActive(): IProduct {
@@ -26,6 +26,6 @@ export class Catalogue {
     }
 
     getItem(id: string): IProduct {
-        return this._items.filter((item) => item.id === id)[0];
+        return this._items.filter(item => item.id === id)[0];
     }
 }
