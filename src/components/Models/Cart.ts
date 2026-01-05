@@ -24,12 +24,9 @@ export class Cart {
     }
 
     total(): number {
-        // Проверка цены не null может понадобиться, если надо будет реализовывать возможность добавления бесценного товара в корзину. 
-        // В текущем ТЗ бесценный товар в корзине оказаться не может. VSCode указывает ошибку 'item.price is possibly null' независимо от наличия или отсутствия фильтра.
         return (
             this._items
-                // .filter(item => item.price !== null)
-                .reduce((count, item) => count + item.price, 0)
+                .reduce((count, item) => count + (item.price || 0), 0)
         );
     }
 

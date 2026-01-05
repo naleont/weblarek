@@ -27,9 +27,7 @@ export interface IBuyer {
     address: string;
 }
 
-export interface IBuyerValid extends Omit<IBuyer, "payment"> {
-    payment: string;
-}
+export type TErrors = Partial<Record<keyof IBuyer, string>>;
 
 export interface IOrder extends IBuyer {
     total: number;
@@ -38,5 +36,10 @@ export interface IOrder extends IBuyer {
 
 export interface IOrderResponse {
     id: string;
+    total: number;
+}
+
+export interface IProductsResponse {
+    items: IProduct[];
     total: number;
 }

@@ -1,4 +1,4 @@
-import { IBuyer, IBuyerValid, TPayment } from "../../types";
+import { IBuyer, TErrors, TPayment } from "../../types";
 
 export class Buyer {
     private _payment: TPayment;
@@ -13,27 +13,19 @@ export class Buyer {
         this._address = "";
     }
 
-    set data(data: IBuyer) {
-        this._payment = data.payment;
-        this._email = data.email;
-        this._phone = data.phone;
-        this._address = data.address;
-    }
-
-    set payment(data: TPayment) {
-        this._payment = data;
-    }
-
-    set email(data: string) {
-        this._email = data;
-    }
-
-    set phone(data: string) {
-        this._phone = data;
-    }
-
-    set address(data: string) {
-        this._address = data;
+    set data(data: Partial<IBuyer>) {
+        if (data.payment !== undefined) {
+            this._payment = data.payment;
+        }
+        if (data.email !== undefined) {
+            this._email = data.email;
+        }
+        if (data.phone !== undefined) {
+            this._phone = data.phone;
+        }
+        if (data.address !== undefined) {
+            this._address = data.address;
+        }
     }
 
     get data(): IBuyer {
@@ -52,7 +44,7 @@ export class Buyer {
         this._address = "";
     }
 
-    validate(): IBuyerValid {
+    validate(): TErrors {
         return {
             payment: this._payment ? "" : "Выберите способ оплаты",
             email: this._email ? "" : "Укажите email",

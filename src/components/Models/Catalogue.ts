@@ -1,13 +1,10 @@
 import { IProduct } from "../../types";
 
 export class Catalogue {
-    private _items: IProduct[];
-    private _itemActive!: IProduct;
+    private _items: IProduct[] = [];
+    private _itemActive: IProduct | null = null;
 
-    // Понять, как оставить конструктор пустым. Был способ не задавать поля через конструктор, а делать это в методах.
-    constructor() {
-        this._items = [];
-    }
+    constructor() {}
 
     set items(items: IProduct[]) {
         this._items = items;
@@ -17,12 +14,12 @@ export class Catalogue {
         return this._items;
     }
 
-    set itemActive(id: string) {
-        this._itemActive = this._items.filter(item => item.id === id)[0];
+    set itemActive (item: IProduct) { 
+        this._itemActive = item;
     }
 
-    get itemActive(): IProduct {
-        return this._itemActive;
+    get itemActive(): IProduct | null {
+        return this._itemActive ? this._itemActive : null;
     }
 
     getItem(id: string): IProduct {
