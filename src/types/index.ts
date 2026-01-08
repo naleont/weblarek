@@ -1,3 +1,5 @@
+import { categoryMap } from "../utils/constants";
+
 export type ApiPostMethods = "POST" | "PUT" | "DELETE";
 
 export interface IApi {
@@ -11,12 +13,14 @@ export interface IApi {
 
 export type TPayment = "card" | "cash" | "";
 
+export type TCategoryClasses = keyof typeof categoryMap;
+
 export interface IProduct {
     id: string;
     description: string;
     image: string;
     title: string;
-    category: string;
+    category: TCategoryClasses;
     price: number | null;
 }
 

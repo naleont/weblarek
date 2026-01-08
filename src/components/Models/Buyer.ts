@@ -1,4 +1,5 @@
 import { IBuyer, TErrors, TPayment } from "../../types";
+import { IEvents } from "../base/Events";
 
 export class Buyer {
     private _payment: TPayment;
@@ -6,7 +7,7 @@ export class Buyer {
     private _phone: string;
     private _address: string;
 
-    constructor() {
+    constructor(protected events: IEvents) {
         this._payment = "";
         this._email = "";
         this._phone = "";
@@ -26,6 +27,7 @@ export class Buyer {
         if (data.address !== undefined) {
             this._address = data.address;
         }
+        this.events.emit("buyer-updated");
     }
 
     get data(): IBuyer {
@@ -42,14 +44,23 @@ export class Buyer {
         this._email = "";
         this._phone = "";
         this._address = "";
+        this.events.emit("buyer-updated");
     }
 
     validate(): TErrors {
-        return {
-            payment: this._payment ? "" : "Выберите способ оплаты",
-            email: this._email ? "" : "Укажите email",
-            phone: this._phone ? "" : "Укажите телефон",
-            address: this._address ? "" : "Укажите адрес доставки",
-        };
+        const formErrors: TErrors = {};
+        if (!this._payment) {
+            formErrors.payment = "Выберите способ оплаты";
+        }
+        if (!this._email) {
+            formErrors.email = "Укажите email";
+        }
+        if (!this._phone) {
+            formErrors.phone = "Укажите телефон";
+        }
+        if (!this._address) {
+            formErrors.address = "Укажите адрес доставки";
+        }
+        return formErrors;
     }
 }

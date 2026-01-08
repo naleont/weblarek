@@ -1,4 +1,4 @@
-import { IApi, IOrder, IOrderResponse, IProduct, IProductsResponse } from "../types";
+import { IApi, IOrder, IOrderResponse, IProductsResponse } from "../types";
 
 export class AppApi {
     private _baseApi: IApi;
