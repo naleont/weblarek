@@ -302,11 +302,11 @@ interface ISUccess {
 interface ICardView {
     id: string;
     title: string;
-    price: number;
+    price: number || null;
     category: TCategoryClasses;
     image: string;
     description: string;
-    buttonText: boolean;
+    inCart: boolean;
     index: number;
 }
 ```
@@ -353,10 +353,10 @@ interface ICardView {
 
 Методы класса:\
 `cartActionListener` содержит колбэк для обработки клика по кнопке добавления/удаления товара из корзины;\
-`set category(category: string)` - устанавливает категорию товара;\
+`set category(category: TCategoryClasses)` - устанавливает категорию товара;\
 `set description(text: string)` - устанавливает текст описания товара;\
 `set image(image: string)` - устанавливает URL изображения товара;\
-`set buttonText(inCart: boolean)` - устанавливает текст кнопки (Добавить / Удалить из корзины).
+`set inCart(inCart: boolean)` - устанавливает текст кнопки (Добавить / Удалить из корзины).
 
 #### Класс CardBasket
 

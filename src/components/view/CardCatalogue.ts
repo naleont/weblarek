@@ -28,11 +28,12 @@ export class CardCatalogue extends CardView {
         this.cardButton.addEventListener("click", () => {
             this.events.emit("choose-card", { id: this.itemId });
         });
+        
+        this.categoryElement.classList.remove(`${categoryMap['софт-скил']}`)
     }
 
     set category(category: TCategoryClasses) {
         this.categoryElement.textContent = category;
-        // this.categoryElement.classList.remove(`${categoryMap['софт-скил']}`)
         this.categoryElement.classList.add(`${categoryMap[category]}`);
     }
 

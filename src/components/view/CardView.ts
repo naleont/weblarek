@@ -6,11 +6,11 @@ import { IEvents } from "../base/Events";
 interface ICardView {
     id: string;
     title: string;
-    price: number;
+    price: number | null;
     category: TCategoryClasses;
     image: string;
     description: string;
-    buttonText: boolean;
+    inCart: boolean;
     index: number;
 }
 
@@ -42,8 +42,8 @@ export class CardView extends Component<ICardView> {
         this.titleElement.textContent = title;
     }
 
-    set price(price: number) {
-        if (price !== 0) {
+    set price(price: number | null) {
+        if (price) {
             this.priceElement.textContent = `${String(price)} синапсов`;
             this.priceless = false;
         } else {

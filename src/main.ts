@@ -87,7 +87,7 @@ broker.on("catalogue-ready", () => {
         return card.render({
             id: item.id,
             title: item.title,
-            price: item.price || 0,
+            price: item.price,
             image: CDN_URL + item.image,
             category: item.category,
         });
@@ -108,10 +108,10 @@ broker.on("item-selected", () => {
             content: cardPreview.render({
                 id: itemActive.id,
                 title: itemActive.title,
-                price: itemActive.price || 0,
+                price: itemActive.price,
                 description: itemActive.description,
                 category: itemActive.category,
-                buttonText: cartModel.checkItem(itemActive.id),
+                inCart: cartModel.checkItem(itemActive.id),
                 image: CDN_URL + itemActive.image
             }),
         });
@@ -136,14 +136,14 @@ broker.on("cart-changed", ({ id }: { id: string }) => {
             return card.render({
                 id: item.id,
                 title: item.title,
-                price: item.price || 0,
+                price: item.price,
                 index: indexArray + 1,
             });
         });
         basket.total = cartModel.total();
         header.counter = cartModel.items.length;
         basket.render({ cartItems: cardsBasket });
-        cardPreview.buttonText = cartModel.checkItem(id);
+        cardPreview.inCart = cartModel.checkItem(id);
     } else {
         basket.total = 0;
         header.counter = 0;

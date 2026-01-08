@@ -20,10 +20,6 @@ export class ContactsForm extends Form {
             "input[name=phone]",
             this.container
         );
-        this.submitButton = ensureElement<HTMLButtonElement>(
-            ".button",
-            this.container
-        );
 
         this.emailElement.addEventListener("keyup", () => {
             this.events.emit("form-update", {

@@ -30,7 +30,7 @@ export class Basket extends Component<IBasket> {
             ".basket__button",
             this.container
         );
-        this.buyButton.disabled = true
+        this.buyButton.disabled = true;
 
         this.buyButton.addEventListener("click", () => {
             this.events.emit("buy-cart");
@@ -39,11 +39,7 @@ export class Basket extends Component<IBasket> {
 
     set cartItems(items: HTMLElement[]) {
         this.cartList.replaceChildren(...items);
-        if (items.length === 0) {
-            this.buyButton.disabled = true
-        } else {
-            this.buyButton.disabled = false
-        }
+        this.buyButton.disabled = items.length === 0;
     }
 
     set total(sum: number) {

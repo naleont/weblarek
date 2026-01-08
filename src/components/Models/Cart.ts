@@ -14,7 +14,6 @@ export class Cart {
 
     add(item: IProduct): void {
         this._items.push(item);
-        // console.log(item)
         this.events.emit("cart-changed", { id: item.id });
     }
 

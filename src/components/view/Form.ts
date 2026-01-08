@@ -13,7 +13,7 @@ interface IForm {
 
 export class Form extends Component<IForm> {
     protected formErrors: HTMLElement;
-    protected submitButton!: HTMLButtonElement;
+    protected submitButton: HTMLButtonElement;
 
     constructor(container: HTMLElement) {
         super(container);
@@ -23,7 +23,10 @@ export class Form extends Component<IForm> {
             this.container
         );
 
-        
+        this.submitButton = ensureElement<HTMLButtonElement>(
+            "button[type=submit]",
+            this.container
+        );
     }
 
     set errors(text: string) {
@@ -31,8 +34,6 @@ export class Form extends Component<IForm> {
     }
 
     valid(valid: boolean): void {
-        valid
-            ? (this.submitButton.disabled = false)
-            : (this.submitButton.disabled = true);
+        this.submitButton.disabled = !valid;
     }
 }

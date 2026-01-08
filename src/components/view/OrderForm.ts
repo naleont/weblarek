@@ -25,10 +25,6 @@ export class OrderForm extends Form {
             "input[name=address]",
             this.container
         );
-        this.submitButton = ensureElement<HTMLButtonElement>(
-            ".order__button",
-            this.container
-        );
 
         this.cardButton.addEventListener("click", () => {
             this.events.emit("form-update", { data: { payment: "card" } });

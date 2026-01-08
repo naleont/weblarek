@@ -1,3 +1,5 @@
+import { TCategoryClasses } from "../../types";
+import { categoryMap } from "../../utils/constants";
 import { ensureElement } from "../../utils/utils";
 import { IEvents } from "../base/Events";
 import { CardView } from "./CardView";
@@ -28,6 +30,8 @@ export class CardPreview extends CardView {
             this.container
         );
 
+        this.categoryElement.classList.remove(`${categoryMap['софт-скил']}`);
+
         this.cardButton.addEventListener("click", this.cartActionListener);
     }
 
@@ -35,8 +39,12 @@ export class CardPreview extends CardView {
         this.events.emit("cart-action", { id: this.itemId });
     };
 
-    set category(category: string) {
+    set category(category: TCategoryClasses) {
         this.categoryElement.textContent = category;
+        
+        this.categoryElement.classList = ''
+        this.categoryElement.classList.add('card__category')
+        this.categoryElement.classList.add(`${categoryMap[category]}`);
     }
 
     set description(text: string) {
@@ -47,7 +55,7 @@ export class CardPreview extends CardView {
         this.imageElement.src = image;
     }
 
-    set buttonText(inCart: boolean) {
+    set inCart(inCart: boolean) {
         this.cardButton.textContent = inCart
             ? "Удалить из корзины"
             : "В корзину";
